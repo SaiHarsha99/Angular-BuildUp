@@ -1,0 +1,28 @@
+.container-styles {
+    position: relative;
+    top: 180px;
+    width: 50%
+}
+
+.bgcolor {
+    color: #f1228a;
+    background-color: black;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: cursive;
+}
+
+.padding {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.link-underline {
+    color: black;
+    text-decoration: underline;
+}
+
+.error {
+    position: relative;
+    left: 100px;
+}

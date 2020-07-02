@@ -1,0 +1,137 @@
+<nav class="navbar navbar-default navbar-fixed-top navbarpos">
+    <div class="container-fluid">
+        <a class="navbar-brand txtcolor">{{ pageTitle }}
+      <span class="glyphicon glyphicon-education txtcolor"></span
+    ></a>
+    </div>
+</nav>
+<br />
+<br />
+<div class="container" class="carouselpos">
+    <!-- Displays two tabs-->
+    <div class="panel with-nav-tabs panel-primary noborder">
+        <h3 class='text-center'>Your own Self</h3>
+        <div class="panel-heading noborder bgcolor">
+            <ul class="nav nav-tabs noborder">
+                <li class="active tabpos">
+                    <a (click)="tabselect('persData')" style="color: black" data-toggle="tab"><i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+            <div>Personal Data</div>
+          </a>
+                </li>
+                <li class="tabpos">
+                    <a (click)="tabselect('profData')" style="color: black" data-toggle="tab"><i class="glyphicon glyphicon-briefcase" aria-hidden="true"></i>
+            <div>Professional Data</div>
+          </a>
+                </li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="tab-content">
+                <!-- Filtering dropdown -->
+                <div class="tab-pane fade in active" id="tabprimary">
+                    <!-- Displays the persons data -->
+                    <div *ngIf="persData">
+                        <div class="row" *ngFor="let val of persData">
+                            <marquee behavior="scroll" direction="right">
+                                <h2>Hello {{val.name}}! Have a lovely day <span class="glyphicon glyphicon-heart"></span></h2>
+                            </marquee>
+                            <br>
+                            <div class="bio col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-4 col-lg-4 col-lg-offset-1">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading bgcolor2">Biography</div>
+                                    <div class="panel-body ">
+                                        <div><span class="label block1">Phone Number : </span>&nbsp;<span class="text-info">{{ val.phoneNum }}</span> </div>
+                                        <div><span class="label block2">Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : </span>&nbsp;<span class="text-info">{{ val.address }}</span></div>
+                                        <div><span class="label block1">Facebook &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </span>&nbsp;<a>{{ val.facebookLink }}</a></div>
+                                        <div><span class="label block2">Instagram &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</span>&nbsp;<a>{{ val.instagramLink }}</a></div>
+                                        <div><span class="label block1">LinkedIn &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : </span>&nbsp;<a>{{ val.linkedLink }}</a></div>
+                                        <div><span class="label block2">Hobbies&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  : </span>&nbsp;<span class="text-info">{{ val.hobbies }}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5 col-sm-offset-2 col-md-6 col-lg-offset-2 col-lg-5">
+                                <img [src]="val.profilePic" [title]="val.name" class="img-rounded img-responsive" alt="Profile Pic" [style.width.px]="imageWidth" [style.height.px]="imageHeight" [style.margin.px]="imageMargin" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div *ngIf="profData">
+                        <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-4 col-lg-4 col-lg-offset-1" *ngFor="let product of profData">
+                            <i class="text-left label skillset"><strong>Skills Earned</strong></i>
+                            <br/> <br/>
+                            <ul class="list-group list-group-flush" *ngFor="let s of product.skills, let i = index">
+                                <li class="list-group-item">{{s}}</li>
+                            </ul>
+
+                            <ul class="list-group list-group-flush" *ngIf="newtasks.length> 0">
+                                <i class="label skillset"><strong>Newly added</strong></i>
+                                <br/> <br/>
+                                <li *ngFor="let task of newtasks" class="list-group-item">{{task}}</li>
+                            </ul>
+
+                            <div class="right float-right">
+                                <form class="example-form">
+                                    <mat-form-field class="example-full-width">
+                                        <div class="buttonIn">
+                                            <input matInput type="text" name="fname" #newTask (keyup.enter)="addTask(newTask.value)" placeholder="Pick or Add a new skill" [formControl]="myControl" [matAutocomplete]="auto">
+                                            <button (click)="addTask(newTask.value)"><span class="glyphicon glyphicon-pencil" style="font-size: 18px"></span></button>
+                                            <mat-autocomplete #auto="matAutocomplete">
+                                                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                                                    {{option}}
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                        </div>
+                                    </mat-form-field>
+                                </form>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-5 col-sm-offset-2 col-md-6 col-lg-offset-1 col-lg-5" *ngFor="let data of profData">
+                            <div>
+                                <table class="rwd-table">
+                                    <caption>
+                                        Projects Done
+                                    </caption>
+                                    <tr>
+                                        <th>S.no</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Technologies used</th>
+                                    </tr>
+                                    <tr *ngFor="let x of data.projects, let i = index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{ x.name }}</td>
+                                        <td>{{ x.description }}</td>
+                                        <td>{{ x.technologies }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <br /><br />
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="container">
+            <span>Some other ways to improvise!! </span>
+            <ul>
+                <li>Improve your coding skills by using <a href="https://www.hackathon.com/">Hackathon</a>.</li>
+                <li>Earn certifications using <a href="https://www.sololearn.com/">Sololearn</a>.</li>
+                <li>Challenge yourself with new technologies.</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <section id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p>BuildUp is optimized for enchancing your carrer and learning, testing, and training. While using this site, you agree to have read and accepted our <a href="/about/about_copyright.asp">terms of use</a>.</p>
+                    <p class="h6">© All right Reversed.<a href="#" target="_blank">BuildUp</a></p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </section>

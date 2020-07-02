@@ -1,0 +1,22 @@
+[{
+    "skills": [
+        "Programming",
+        "Photoshop"
+    ],
+    "projects": [{
+            "name": "Mytrip",
+            "description": "A UI based application helpful for booking travel,trips and accomodations.",
+            "technologies": "React, Vue"
+        },
+        {
+            "name": "Zokartey",
+            "description": "Spanish website which serves as the best tool to identify food and nutrition values.",
+            "technologies": "Bootsrap, JavaScript"
+        },
+        {
+            "name": "Tremado",
+            "description": "Website that helps an individual to provide basic knowledge of latest innovations.",
+            "technologies": "Angular, Three"
+        }
+    ]
+}]
